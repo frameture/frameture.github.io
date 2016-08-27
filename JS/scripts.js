@@ -1,6 +1,31 @@
- 
     /**
-        * Function sets the values of "clock" and "date" elements to present 
+        * Creates and adds nodes that represent the digital clock.
+    **/
+
+function start() {
+      
+    var mainNode = document.createElement("div");
+    mainNode.id = "time-date";
+    
+    if ( ! document.body.contains(mainNode) ) {
+        
+        var timeNode = document.createElement("div");
+        timeNode.id = "time";
+        mainNode.appendChild(timeNode);
+
+        var dateNode = document.createElement("div");
+        dateNode.id = "date";
+        mainNode.appendChild(dateNode);
+
+        document.body.insertBefore(mainNode, document
+                            .getElementById("main-content"));
+    }
+    startTime();
+}
+
+
+    /**
+        * Function sets the values of "time" and "date" elements to present 
         * current values. Powered by a Timer with 500 interval.  
     **/
 
@@ -30,8 +55,8 @@ function startTime() {
     //getting AM / PM
     var dayState = (today.getHours() < 12) ? "<span>AM</span>" : "<span>PM</span>";
     
-    //modifying content of "clock" and "date" nodes
-    document.getElementById("clock")
+    //modifying content of "time" and "date" nodes
+    document.getElementById("time")
         .innerHTML = hours + ":" + minutes + ":" + seconds + " " + dayState;
     
     document.getElementById("date")
