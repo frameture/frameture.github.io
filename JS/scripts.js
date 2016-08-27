@@ -1,0 +1,65 @@
+ 
+    /**
+        * Function sets the values of "clock" and "date" elements to present 
+        * current values. Powered by a Timer with 500 interval.  
+    **/
+
+function startTime() {
+    
+    var today = new Date();
+    
+    var seconds = checkTime(today.getSeconds(), false),
+        minutes = checkTime(today.getMinutes(), false),
+        hours = checkTime(today.getHours(), true),
+        day = today.getDate(),
+        year = today.getFullYear();
+    
+    var days = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                
+                 "Saturday", "Sunday" ];
+    
+    var months = [ "January", "February", "March", "April", "May", "June",
+                  
+                   "July", "August", "September", "October", "November",
+                  
+                   "December" ];
+    
+    var weekDay = days[today.getDay()],
+        month = months[today.getMonth()];
+    
+    //getting AM / PM
+    var dayState = (today.getHours() < 12) ? "<span>AM</span>" : "<span>PM</span>";
+    
+    //modifying content of "clock" and "date" nodes
+    document.getElementById("clock")
+        .innerHTML = hours + ":" + minutes + ":" + seconds + " " + dayState;
+    
+    document.getElementById("date")
+        .innerHTML = weekDay + ", " + day + " " + month + " " + year;
+    
+    //firing a timer
+    setTimeout(function () { startTime(); }, 500);
+
+}
+    /**
+       * Function checks whether the specified "time" parameter is 
+       * less than 10, if so, function returns String value of "0" + time .
+       * If isHourBool boolean value is set to true, the 'time' parameter 
+       * is treated as a hour value and returned as  a value from range
+       * ' 1 - 12 '.
+    **/
+    
+function checkTime(time, isHourBool) {
+    
+    if (isHourBool === true) {
+        time = (time === 0) ? 12 : time;
+        time = (time > 12) ? time - 12 : time;
+    }
+
+    if (time < 10) {
+        return "0" + time;
+    } else {
+        return time;
+    }
+
+}

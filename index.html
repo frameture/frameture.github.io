@@ -1,14 +1,21 @@
-<!-- a bit of style added with CSS -->
+<!-- a bit of JavaScript added-->
 
 <!DOCTYPE html>
 <html>
     <head>
         <title>Profile</title>
-        <link rel="stylesheet" type="text/css" href="CSS/stylesheet.css" >
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="CSS/stylesheet.css" />
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400" rel="stylesheet" /> 
+        <script type="text/javascript" src="JS/scripts.js"></script>
     </head>
     
-    <body>  
+    <body onload="startTime()">
+        
+        <div id="time-date">
+            <div id="clock" ></div>
+            <div id="date" ></div>
+        </div>
+        
         <div id="main-content">         
             <div id="div-front"> 
                 <img id="avatar" src="images/picture.jpg" alt="Profile Picture"/>
