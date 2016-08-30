@@ -1,5 +1,3 @@
-<!-- a bit of JavaScript added-->
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,10 +5,33 @@
         <link rel="stylesheet" type="text/css" href="CSS/stylesheet.css" />
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400" rel="stylesheet" /> 
         <script type="text/javascript" src="JS/scripts.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" src="JS/app.js"></script>
     </head>
     
     <body onload="start()">
-    
+        
+        <div id="menu">
+            <div id="menu-open">MENU</div>
+            <div id="menu-main">
+                <img id="menu-close" src= "http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png"        alt="close"/>
+                <ul>
+                    <li>About</li>
+                    <li>Content</li>
+                    <li>Help</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+            
+            <div id="sub-menu">
+                <img id="sub-menu-close" src= "http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png" alt="close"/>
+                <p></p>
+                <div id="sub-menu-separator"></div>
+                <div id="sub-menu-content"></div>
+            </div>
+            
+        </div>
+        
         <div id="main-content">         
             <div id="div-front"> 
                 <img id="avatar" src="images/picture.jpg" alt="Profile Picture"/>
@@ -22,7 +43,7 @@
                 <a href="https://facebook.com/frameture"
                       style="color:blue"
                       target="_blank">
-                      <img id="facebook" src="images/face%20book.png" alt="Facebook icon" />
+                      <img id="facebook" src="images/face%20book.png" alt="facebook" />
                </a>
 
             </div> 
@@ -39,6 +60,8 @@
                         <li class="skill"><a href="https://www.coursera.org/learn/android-programming-2" target="_blank">Android Development</a></li>
                         
                         <li class="skill"><a href="https://www.coderstrust.com" target="_blank">HTML / CSS</a></li>
+                        
+                        <li class="skill"><a href="https://www.coderstrust.com" target="_blank">JavaScript / jQuery</a></li>
                     </ul>
                 
                 
