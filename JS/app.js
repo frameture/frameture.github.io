@@ -63,7 +63,7 @@ function getListItemText($listItem){
             break;
             
         case "Contact":
-            return "If you feel like you want to contact, feel free to get in touch. email: frameture@gmail.com";
+            return "If you feel like you want to contact, feel free to get in touch. email: <strong>frameture@gmail.com</strong>";
             break;
             
         case "Content": 
