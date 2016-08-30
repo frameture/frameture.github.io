@@ -1,3 +1,4 @@
+
 body{
     background-color: azure;
     text-align: center;
@@ -6,29 +7,11 @@ body{
     cursor: default;
 }
 
-#time-date{
-    background: #fff;
-    margin: 1em auto;
-    border: 0.2em solid rgb(0, 191, 255); 
-    width: 10em;
-    padding: 0.3em;
-    line-height: 1.1em;
-}
-
-#time-date span{
-    color: #808080;
-    font-weight: 700;
-    font-variant-position: super;
-    font-size: .6em;
-    position: relative;
-    top: -.35em;
-}
-
 #main-content{
     position: relative;
-    margin: 1.5em auto;
+    margin: 2.5em auto;
     width: 33em;
-    height: 53em;
+    height: 55em;
     background-color: #fff;
     border: 0.2em solid rgb(0, 191, 255);   
 }
@@ -36,6 +19,7 @@ body{
 #div-front{
     width: inherit;
     position: absolute;
+    margin-top: 1em;
 }
 
 #avatar{
@@ -104,8 +88,7 @@ h2{
 #right{
     float: right;
     text-align: justify;
-    margin-right: 1em;
-    
+    margin-right: 1em;   
 }
 
 #interests{
@@ -113,13 +96,108 @@ h2{
     padding-top: 0.1em;
 }
 
-li{
+#main-content ul{
+    margin-top: -.6em;
+}
+
+#main-content li{
     position: relative;
     left: -0.9em;
     list-style: none;
-    line-height: 1.5em;
+    line-height: 1.6em;
     margin: 0 10em;  
 }
 
+#time-date{
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    margin: 3em auto;
+    border: 0.2em solid rgb(0, 191, 255); 
+    width: 10em;
+    padding: 0.3em;
+    line-height: 1.1em;
+}
 
+#time-date span{
+    color: #808080;
+    font-weight: 700;
+    font-variant-position: super;
+    font-size: .6em;
+    position: relative;
+    top: -.35em;
+}
 
+#menu-open{
+    display: inline;
+    position: fixed;
+    left: 2em;
+    top: 1em;
+    z-index:2;
+    opacity: .5;
+    color: rgb(0, 191, 255);
+    font-weight: 900;
+}
+
+#menu li{
+    position: relative;
+    left: -0.9em;
+    list-style: none;
+    line-height: 1em;
+    margin: 2em 1em;
+}
+
+#menu li:hover{
+    font-weight: 900;
+}
+
+#sub-menu{
+    width: 12em;
+    height: 18.25em;
+    display: inline;
+    position: fixed;
+    left: -14em;
+    border: 0.2em solid rgb(0, 191, 255);
+    border-left: none;
+    top: 3em;
+    z-index:1;
+    color: rgb(0, 191, 255);
+    font-weight: 900;
+    background: white; 
+}
+
+#sub-menu-close{
+    margin-top: 2em;
+}
+
+#sub-menu p{
+    color:black;
+    font-weight: 900;
+}
+
+#sub-menu-separator{ 
+    background: rgb(0, 191, 255);
+    height: .1em;
+    width: 70%;
+    margin: -.1em auto;
+}
+
+#sub-menu-content{
+    margin: .1em .2em;
+    color: black;
+    font-weight: 400;
+    line-height: 2em;
+    text-align: center;
+}
+
+#menu-main{
+    padding-top: 2em;
+    position: fixed;
+    display: inline-block;
+    left: 0em;
+    top: 3em;
+    z-index: 2;
+    background: white;
+    border: 0.2em solid rgb(0, 191, 255); 
+    border-left: none;
+}
