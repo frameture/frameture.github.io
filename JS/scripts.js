@@ -1,5 +1,6 @@
     /**
         * Creates and adds nodes that represent the digital clock.
+        * Also starts function that adds menu event handlers.
     **/
 
 function start() {
@@ -16,11 +17,12 @@ function start() {
         var dateNode = document.createElement("div");
         dateNode.id = "date";
         mainNode.appendChild(dateNode);
-
+        
         document.body.insertBefore(mainNode, document
-                            .getElementById("main-content"));
+                            .getElementById("menu"));
     }
     startTime();
+    menuAddHandler();
 }
 
 
