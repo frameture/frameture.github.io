@@ -145,6 +145,7 @@ h2{
     list-style: none;
     line-height: 1em;
     margin: 2em 1em;
+    padding: 0 .2em;
 }
 
 #menu li:hover{
