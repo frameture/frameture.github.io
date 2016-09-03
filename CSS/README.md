@@ -1,1 +1,1 @@
-CSS code
+Folder containing CSS resources.

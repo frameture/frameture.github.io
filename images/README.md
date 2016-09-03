@@ -1,1 +1,1 @@
-
+Folder containing picture resources.

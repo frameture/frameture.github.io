@@ -27,17 +27,49 @@ function menuAddHandler(){
         $(this).animate({
             opacity: ".5"
         }, 100);
+    
+        
+        if( $("#menu-main").css("left") === "0px" ){
+                  
+            if( $("#sub-menu").css("left") === "165.6px" ){
+                $("#sub-menu").animate({
+                    left: "-14em"
+                }, 200);
+            }
+
+            $("#menu-main").animate({
+                left: "-10em"
+            }, 200);
+
+            $("#menu-open").animate({
+                opacity: "1"
+            }, 100);
+        }
     });
     
     $("#menu-main").find("li").click(function(){
+        
+        console.log($(this).html());
         var $panel = $("#sub-menu");
-        $panel.find("p").html( $(this).html() );
-        $panel.find("#sub-menu-content").html(getListItemText($(this)));
+        var $panelP = $panel.find("p");
         
-        $("#sub-menu").animate({
-            left: "6.9em"
-        }, 200);
-        
+        if( $("#sub-menu").css("left") === "165.6px" ){
+            if( $(this).html() === $panelP.html() ){
+                $("#sub-menu").animate({
+                left: "-14em"
+                }, 200);
+            }
+            
+            $panelP.html($(this).html());
+            $panel.find("#sub-menu-content").html(getListItemText($(this)));
+            
+         }else{
+                $panelP.html($(this).html());
+                $panel.find("#sub-menu-content").html(getListItemText($(this)));
+                $("#sub-menu").animate({
+                    left: "6.9em"
+                }, 200);
+         }     
     });
     
     $("#sub-menu-close").click(function(){
