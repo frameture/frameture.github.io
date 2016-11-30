@@ -1,94 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Profile</title>
-        <link rel="stylesheet" type="text/css" href="CSS/stylesheet.css" />
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400" rel="stylesheet" /> 
-        <script type="text/javascript" src="js/scripts.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
-        
-    </head>
-    
-    <body onload="start()">
-        
-        <div id="menu">
-            <div id="menu-open">MENU</div>
-            <div id="menu-main">
-                <img id="menu-close" src= "http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png"        alt="close"/>
-                <ul>
-                    <li>About</li>
-                    <li>Content</li>
-                    <li>Contact</li>
-                    <li>Help</li>
-                </ul>
-            </div>
-            
-            <div id="sub-menu">
-                <img id="sub-menu-close" src= "http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png" alt="close"/>
-                <p></p>
-                <div id="sub-menu-separator"></div>
-                <div id="sub-menu-content"></div>
-            </div>
-            
+  
+  <head>
+    <title>Profile</title>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400"; rel="stylesheet" />
+    <link rel="stylesheet"; type="text/css"; href="CSS/stylesheet.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script type="text/javascript"; src="js/menuEventHandlers_module.js"></script> 
+    <script type="text/javascript"; src="js/clock_module.js"></script>
+    <script type="text/javascript"; src="js/main.js"></script>
+  </head>
+  
+  <body onload="start()"> 
+    <div class="menu">
+      <div class="menu-open">MENU</div>
+      <div class="menu-main">
+        <img class="menu-close"; src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png"; alt="close"/>
+        <ul>
+          <li>About</li>
+          <li>Content</li>
+          <li>Contact</li>
+          <li>Help</li>
+        </ul>
+      </div> 
+      <div class="sub-menu">
+        <img class="sub-menu-close"; src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png"; alt="close"/>
+        <p></p> <!-- used in event handling; will contain text for given menu item -->
+        <div class="sub-menu-separator"></div>
+        <div class="sub-menu-content"></div>
+      </div>   
+    </div>
+    <div class="main-content">         
+      <div class="main-content-front"> 
+        <img id="avatar"; src="images/picture.jpg"; alt="Profile Picture"/>
+        <h1>Bartlomiej Laskowski</h1>
+        <h2> Kielce, Poland</h2> <!-- not needed -->
+        <a href="https://facebook.com/frameture";
+           style="color:blue"; target="_blank">
+          <img id="facebook"; src="images/face%20book.png"; alt="facebook" />
+        </a>
+      </div> 
+      <div class="main-content-body">
+        <p class="full-info">
+          Entrepreneurial spirit that gathers knowledge and skills necessary to launch new ventures, IT ventures. Enthusiastic and positive person that possess exceptional interpersonal skills. Self-driven and subordinate to self-discipline.           
+        </p>    
+        <h4>Skills</h4>
+        <ul>
+          <li class="skill"><a href="http://math.hws.edu/javanotes/index.html"; 
+                     target="_blank">Java</a></li>
+          <li class="skill"><a href="https://www.coursera.org/learn/android-programming-2";
+                     target="_blank">Android Development</a></li>   
+          <li class="skill"><a href="http://www.eloquentjavascript.net/";
+                     target="_blank">JavaScript</a></li>
+        </ul>
+        <h4>Experience</h4>
+        <div class="experience">  
+          <div id="left">
+            2016 - Current: <br>
+            2016 - Current:
+          </div>
+            <div id="right">
+            Android Developer @ myOwnCoding <br>
+            Web Developer @ Freelancer
+          </div>    
         </div>
-        
-        <div id="main-content">         
-            <div id="div-front"> 
-                <img id="avatar" src="images/picture.jpg" alt="Profile Picture"/>
-
-                <h1>Bartlomiej Laskowski</h1>
-
-                <h2> Kielce, Poland</h2>
-
-                <a href="https://facebook.com/frameture"
-                      style="color:blue"
-                      target="_blank">
-                      <img id="facebook" src="images/face%20book.png" alt="facebook" />
-               </a>
-
-            </div> 
-            <div id="div-content">
-
-                <p class="full-info">
-                    Entrepreneurial spirit that gathers knowledge and skills necessary to launch new ventures, IT ventures. Enthusiastic and positive person that possess exceptional interpersonal skills. Self-driven and subordinate to self-discipline.           
-                </p>
-                
-                <h4>Skills</h4>
-                    <ul>
-                        <li class="skill"><a href="http://math.hws.edu/javanotes/index.html" target="_blank">Java</a></li>
-                        
-                        <li class="skill"><a href="https://www.coursera.org/learn/android-programming-2" target="_blank">Android Development</a></li>
-                        
-                        <li class="skill"><a href="https://www.coderstrust.com" target="_blank">HTML / CSS</a></li>
-                        
-                        <li class="skill"><a href="https://www.coderstrust.com" target="_blank">JavaScript / jQuery</a></li>
-                    </ul>
-                
-                
-                <h4>Experience</h4>
-                
-                <div id="experience">  
-                    <div id="left">
-                        2016 - Current: <br>
-                        2016 - Current:
-                    </div>
-                    <div id="right">
-                        Android Developer @ myOwnCoding <br>
-                        Web Developer @ Freelancer
-                    </div>    
-                </div>
-                
-
-                <div id="interests">  
-                    <h4>Interests</h4>
-                    <p>Coding / Commodity &amp; Currency Trading / Fitness / Books</p>
-                </div>  
-                
-            </div>
-            
-        </div>
-              
-    </body>
-
+        <div class="interests">  
+          <h4>Interests</h4>
+          <p>Coding / Commodity &amp; Currency Trading / Fitness / Books</p>
+        </div>  
+      </div>  
+    </div>        
+  </body>
 </html>

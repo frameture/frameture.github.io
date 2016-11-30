@@ -1,5 +1,5 @@
 
-body{
+body {
     background-color: azure;
     text-align: center;
     font-family: 'Josefin Sans', sans-serif;
@@ -7,7 +7,7 @@ body{
     cursor: default;
 }
 
-#main-content{
+.main-content {
     position: relative;
     margin: 2.5em auto;
     width: 33em;
@@ -16,13 +16,13 @@ body{
     border: 0.2em solid rgb(0, 191, 255);   
 }
 
-#div-front{
+.main-content-front {
     width: inherit;
     position: absolute;
     margin-top: 1em;
 }
 
-#avatar{
+#avatar {
     display: block;
     margin: 1em auto 0;
     width: 30%;
@@ -30,7 +30,7 @@ body{
     border: 0.2em solid rgb(0, 191, 255); 
 }
 
-h2{
+h2 {
     font-size: 21px;
     font-weight: 600;
     line-height: 1.3;
@@ -39,7 +39,7 @@ h2{
     position: relative;
 }
 
-#facebook{
+#facebook {
     position: relative;
     margin:  0.5em auto;
     width: 10%;
@@ -48,59 +48,59 @@ h2{
 
 }
 
-#facebook:hover{
+#facebook:hover {
     width: 11%;
 }
 
-#div-content{
+.main-content-body {
     width: inherit;
     position: absolute;
     bottom: 2em;
     color: black;
 }
 
-.full-info{
+.full-info {
     line-height: 1.5em;
     margin: 0 3em;
 }
 
-.skill a{
+.skill a {
     text-decoration: none;
     color:lightgray;
     transition: color 1s;
     -webkit-transition: color 1s;
 }
-.skill a:hover{
+.skill a:hover {
     color:black;
 }
 
-#experience{
+.experience {
     margin: -.5em 4em;
     line-height: 2em;
 }
 
-#left{
+#left {
     float:left;
     text-align: justify;
     margin-left: 2em;
 }
 
-#right{
+#right {
     float: right;
     text-align: justify;
     margin-right: 1em;   
 }
 
-#interests{
+.interests {
     clear: both;
     padding-top: 0.1em;
 }
 
-#main-content ul{
+.main-content ul {
     margin-top: -.6em;
 }
 
-#main-content li{
+.main-content li {
     position: relative;
     left: -0.9em;
     list-style: none;
@@ -108,7 +108,7 @@ h2{
     margin: 0 10em;  
 }
 
-#time-date{
+#time-date {
     position: relative;
     z-index: 1;
     background: #fff;
@@ -119,7 +119,7 @@ h2{
     line-height: 1.1em;
 }
 
-#time-date span{
+#time-date span {
     color: #808080;
     font-weight: 700;
     font-variant-position: super;
@@ -128,7 +128,7 @@ h2{
     top: -.35em;
 }
 
-#menu-main{
+.menu-main {
     margin 1em;
     padding-top: 2em;
     position: fixed;
@@ -141,7 +141,23 @@ h2{
     border-left: none;
 }
 
-#menu-open{
+ .sub-menu {
+      width: 12em;
+      height: 18.25em;
+      padding: 0 .3em;
+      display: inline;
+      position: fixed;
+      left: -14em;
+      border: 0.2em solid rgb(0, 191, 255);
+      border-left: none;
+      top: 3em;
+      z-index:1;
+      color: rgb(0, 191, 255);
+      font-weight: 900;
+      background: white; 
+  }
+
+.menu-open {
     display: inline;
     position: fixed;
     left: 2em;
@@ -152,7 +168,7 @@ h2{
     font-weight: 900;
 }
 
-#menu li{
+.menu li {
     position:relative;
     left: -0.9em;
     list-style: none;
@@ -161,45 +177,24 @@ h2{
     padding: 0 .2em;
     max-width: 3em;
 
-}
+  }
 
-#menu li:hover{
-    font-weight: 900;
-}
+.menu li:hover { font-weight: 900; }
+.sub-menu-close { margin-top: 2em; }
 
-#sub-menu{
-    width: 12em;
-    height: 18.25em;
-    padding: 0 .3em;
-    display: inline;
-    position: fixed;
-    left: -14em;
-    border: 0.2em solid rgb(0, 191, 255);
-    border-left: none;
-    top: 3em;
-    z-index:1;
-    color: rgb(0, 191, 255);
-    font-weight: 900;
-    background: white; 
-}
-
-#sub-menu-close{
-    margin-top: 2em;
-}
-
-#sub-menu p{
+.sub-menu p {
     color:black;
     font-weight: 900;
 }
 
-#sub-menu-separator{ 
+.sub-menu-separator { 
     background: rgb(0, 191, 255);
     height: .1em;
     width: 70%;
     margin: -.1em auto;
 }
 
-#sub-menu-content{
+.sub-menu-content {
     margin: .1em .4em;
     color: black;
     font-weight: 400;

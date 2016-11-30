@@ -1,1 +1,1 @@
-This is the folder containing project resources of the FE4 block at CodersTrust.
+Repository contains resources for my GitHub page: <a href:"https://frameture.github.io/">https://frameture.github.io/</a>
