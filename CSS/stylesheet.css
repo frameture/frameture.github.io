@@ -110,7 +110,6 @@ h2 {
 
 #time-date {
     position: relative;
-    z-index: 1;
     background: #fff;
     margin: 3em auto;
     border: 0.2em solid rgb(0, 191, 255); 
