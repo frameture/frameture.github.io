@@ -3,16 +3,22 @@
   
   <head>
     <title>Profile</title>
+    <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400"; rel="stylesheet" />
+    <!-- CSS styling -->
     <link rel="stylesheet"; type="text/css"; href="CSS/stylesheet.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script type="text/javascript"; src="js/menuEventHandlers_module.js"></script> 
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- module for installing menu event handlers -->
+    <script type="text/javascript"; src="js/menuEventHandlers_module.js"></script>
+    <!-- module for digital clock -->
     <script type="text/javascript"; src="js/clock_module.js"></script>
+    <!-- Main script. Executes the modules. -->
     <script type="text/javascript"; src="js/main.js"></script>
   </head>
-  
-  <body onload="start()"> 
-    <div class="menu">
+ 
+  <body onload="start()"> <!-- runs the js/main.js script --> 
+    <div class="menu"> <!-- menu section -->
       <div class="menu-open">MENU</div>
       <div class="menu-main">
         <img class="menu-close"; src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png"; alt="close"/>
@@ -29,12 +35,12 @@
         <div class="sub-menu-separator"></div>
         <div class="sub-menu-content"></div>
       </div>   
-    </div>
+    </div> <!-- end menu -->
     <div class="main-content">         
       <div class="main-content-front"> 
         <img id="avatar"; src="images/picture.jpg"; alt="Profile Picture"/>
         <h1>Bartlomiej Laskowski</h1>
-        <h2> Kielce, Poland</h2> <!-- not needed -->
+         <h2> Kielce, Poland</h2> <!-- not needed -->
         <a href="https://facebook.com/frameture";
            style="color:blue"; target="_blank">
           <img id="facebook"; src="images/face%20book.png"; alt="facebook" />
@@ -43,8 +49,9 @@
       <div class="main-content-body">
         <p class="full-info">
           Entrepreneurial spirit that gathers knowledge and skills necessary to launch new ventures, IT ventures. Enthusiastic and positive person that possesses exceptional interpersonal skills. Self-driven and subordinate to self-discipline.           
-        </p>    
-        <h4>Skills</h4>
+        </p> 
+        
+        <h4>Skills</h4> <!-- skills section -->
         <ul>
           <li class="skill"><a href="http://math.hws.edu/javanotes/index.html"; 
                      target="_blank">Java</a></li>
@@ -53,8 +60,9 @@
           <li class="skill"><a href="http://www.eloquentjavascript.net/";
                      target="_blank">JavaScript</a></li>
         </ul>
-        <h4>Experience</h4>
-        <div class="experience">  
+        
+        <h4>Experience</h4> <!-- experience section (hobbyst)-->
+        <div class="experience"> 
           <div id="left">
             2016 - Current: <br>
             2016 - Current:
@@ -64,11 +72,12 @@
             Web Developer @ Freelancer
           </div>    
         </div>
-        <div class="interests">  
+        
+        <div class="interests">  <!-- interests section -->
           <h4>Interests</h4>
           <p>Coding / Commodity &amp; Currency Trading / Fitness / Books</p>
         </div>  
-      </div>  
-    </div>        
+      </div> <!-- end: main-content-body -->
+    </div> <!-- end: main-content -->
   </body>
 </html>
