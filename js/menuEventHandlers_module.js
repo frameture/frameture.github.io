@@ -55,7 +55,7 @@ function MenuEventHandlers() {
       e.stopPropagation(); // stop event propagation
       var $subMenuP = $(".sub-menu").find("p");                       // menu item title
       var $subMenuContent = $(".sub-menu").find(".sub-menu-content"); // menu item content
-      if ( $(".sub-menu").css("left") === "165.6px" ) {     // TODO: convert em to px!
+      if ( $(".sub-menu").css("left") > "0px" ) {           // if sub-menu is visible
         if ( $(this).html() === $subMenuP.html() )          // if menu item clicked again - hide
           hideSubMenu();
         setProperContent(this, $subMenuP, $subMenuContent); // set the text
@@ -87,7 +87,7 @@ function MenuEventHandlers() {
    * Helper function to hide sub-menu.
    */ 
   function hideSubMenu() {
-    if ( $(".sub-menu").css("left") === "165.6px")
+    if ( $(".sub-menu").css("left") > "0px") // if sub-menu is visible
       $(".sub-menu").animate( { left: "-14em" }, 200);
   }
 
