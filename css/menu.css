@@ -1,0 +1,63 @@
+/* MENU styling */
+.menu-main,
+.sub-menu {
+  z-index: 2;
+  background: white;
+}
+.menu-open {
+    z-index: 2;
+    position: fixed;
+    left: 2em;
+    top: 1em;
+    opacity: .5;
+    color: rgb(0, 191, 255);
+    font-weight: 900;
+}
+.menu-main {
+    height: 16.25em;
+    position: fixed;
+    top: 3em;
+    left: 0em;
+    margin 1em;
+    padding-top: 2em;
+    border: 0.2em solid rgb(0, 191, 255); 
+    border-left: none;
+}
+    .menu-main ul {
+        position:relative;
+        left: -0.9em;
+        list-style: none;
+        line-height: 1em;
+    }
+        .menu-main li {
+            margin: 2em 1em;
+            padding: 0 .2em;
+            max-width: 3em;
+        }
+        .menu-main li:hover { 
+            font-weight: 900; 
+        }
+.sub-menu {
+    z-index: 1;
+    height: 18.25em;
+    width: 12em;
+    position: fixed;
+    left: -14em;
+    border: 0.2em solid rgb(0, 191, 255);
+}
+    .sub-menu-close { 
+        margin-top: 2em; 
+    }
+    .sub-menu p {
+        font-weight: 900;
+    }
+    .sub-menu-separator { 
+        width: 70%;
+        height: .1em;
+        margin: -.1em auto;
+        background: rgb(0, 191, 255);
+    }
+    .sub-menu-content {
+        margin: .1em .4em;
+        line-height: 2em;
+    }
