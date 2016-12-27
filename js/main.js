@@ -1,9 +1,8 @@
 /**
- * Function that does all the work.
- * It creates and adds nodes that represent the digital clock by using clock_module,
- * also registers event handlers by using menuEventHandlers_module.
-**/
+ * Does all the work.
+ * It creates and adds the digital clock and registers event handlers.
+ */
 function start() {
   new Clock().main();             // create and insert dogital clock
-  new MenuEventHandlers().main(); // register menu event handlers 
+  new MenuEventHandlers().main(); // register menu event handlers
 }
