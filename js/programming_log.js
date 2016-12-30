@@ -1,5 +1,6 @@
 // TODO: make ".main-content".width responsive to the height of the svg;
-// TODO: implement Log.draw();
+// TODO: Log.draw() - fix -ongoing logs - semiCircle-drawing
+// TODO: Log.draw() - show contents of logs on "mouseover"
 
 "use strict";
 
@@ -10,32 +11,93 @@ function Log(text, startDate, endDate) {
 }
 
 Log.prototype.draw = function(axis, svg, svgCenterX, axisMonths) {
-  console.log(this);
-  var log = this;
   var monthHeight = 2 * axis.emUnit;
-  var startPoint = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  startPoint.setAttribute("class", "log-point");
-  startPoint.setAttribute("fill", "azure");
-  startPoint.setAttribute("stroke", "rgb(0, 191, 255)");
-  startPoint.setAttribute("cx", svgCenterX);
-  startPoint.addEventListener("mouseover", function(e) {
-    console.log(log.text);
-  });
-  var startMonth = this.startDate.getMonth();
-  var startYear = this.startDate.getFullYear();
-  var diffYear = startYear - axis.startYear;
-  console.log("difYear:", diffYear, "startYear:", startYear, "axis.startYear:", axis.startYear);
-    console.log("startMonth:", startMonth, "axis.startMonth:", axis.startMonth);
-  var monthOnLog;
-  if (diffYear == 0)
-    monthOnLog = startMonth - axis.startMonth;
-  else if (diffYear == 1)
-    monthOnLog = 12 - axis.startMonth + startMonth;
-  else 
-    monthOnLog = (((diffYear - 1) * 12) + ((12 - axis.startMonth) + startMonth));
- startPoint.setAttribute("cy", (axisMonths - monthOnLog) * monthHeight); 
-  
+  var startPoint = newPoint(this, axis.emUnit * .2, axis.emUnit * .05);
+  var startY = setY(axis, this.startDate)
+  startPoint.setAttribute("cy", startY);
   svg.appendChild(startPoint);
+  
+  if (this.endDate == null) { // This log has no closing point.
+    var semi = newSemiCircle(this, svgCenterX, startY);
+    console.log(semi);
+    svg.appendChild(semi);
+    return;
+  }
+  
+  var endPoint = newPoint(this, axis.emUnit * .2, axis.emUnit * .05)
+  var endY = setY(axis, this.endDate)
+  endPoint.setAttribute("cy", endY);
+  svg.appendChild(endPoint);
+  svg.appendChild(newSemiCircle(this, svgCenterX, startY, endY));
+  
+  // Nested -- in Log.draw()
+  
+  function newPoint(log, radius, strokeWidth) {
+    var point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    point.setAttribute("r", radius);
+    point.setAttribute("stroke-width", strokeWidth);
+    point.setAttribute("fill", "azure");
+    point.setAttribute("stroke", "rgb(0, 191, 255)");
+    point.setAttribute("cx", svgCenterX);
+    point.addEventListener("mouseover", function(e) {
+      console.log(log.text);
+    });
+    return point;
+  }
+  
+  function setY(axis, date) {
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    var diffYear = year - axis.startYear;
+    var monthOnLog;
+    if (diffYear == 0)
+      monthOnLog = month - axis.startMonth;
+    else if (diffYear == 1)
+      monthOnLog = 12 - axis.startMonth + month;
+    else 
+      monthOnLog = (((diffYear - 1) * 12) + ((12 - axis.startMonth) + month));
+    return (axisMonths - monthOnLog) * monthHeight;
+  }
+  
+  function newSemiCircle(log, cx, y1, y2) {
+    if (y2 == null)
+      y2 = monthHeight;
+
+    // TODO: not finished logs - fix closing drawing;
+    var notFinishedXOffset = 0;
+        var arc = y2 - y1;
+    if (axis.logs.indexOf(log) % 2 == 0) {
+      arc = (-arc);
+    }
+    console.log(cx, arc);
+    var points = ["M " + cx + " " + y1,
+          "Q " + (cx - arc) + " " + (y2 + ((y1 - y2) / 2)),
+          (cx + notFinishedXOffset) + " " + y2];
+    if (y2 == null) { 
+      y2 = monthHeight;
+      notFinishedXOffset = (-monthHeight); 
+      points = ["M " + cx + " " + y1,
+                  "Q " + (cx - arc) + " " + (y2 + ((y1 - y2) / 2)),
+                "z " + (cx + notFinishedXOffset) + " " + y2,];
+                 // "l " + (cx + notFinishedXOffset) + " " + y2];
+    }
+    
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    
+    console.log(points);
+    path.setAttribute("d", points);
+    path.setAttribute("fill", "rgba(230, 230, 230, 0.2)");
+    path.setAttribute("stroke", "rgb(0, 191, 255)");
+    path.addEventListener("mouseover", function(e) {
+      console.log(path);
+      path.setAttribute("fill", "rgba(100, 100, 100, .4)");
+    });
+    path.addEventListener("mouseout", function(e) {
+      path.setAttribute("fill", "rgba(230, 230, 230, 0.2)");
+    });
+    return path;
+  }
+  
 }
 
 function Axis() {
@@ -64,14 +126,12 @@ Axis.prototype.draw = function() {
   var axisMonths = calcAxisMonths(this);
   var svgHeight = (axisMonths + 2) * monthHeight;
   console.log("months in the log:", axisMonths, "svgHeight = ", svgHeight);
-  
   var svg = document.querySelector(".pro-log svg");
   svg.setAttribute("height", svgHeight);
-  
   var svgCenterX = $("svg").outerWidth(false) / 2;
   svg.appendChild(newSVGAxis(this, svgCenterX, axisMonths));
-  drawSeparators(this, svg, svgCenterX, axisMonths);
   drawLogs(this, svg, svgCenterX, axisMonths);
+  drawSeparators(this, svg, svgCenterX, axisMonths);
   
 /* No more drawing. */
 /* ---------- Nested functions ---------- */
@@ -94,9 +154,9 @@ Axis.prototype.draw = function() {
     console.log("cx", cx);
 
     var arrowWidth = axis.emUnit * .15;
-    var arrowHeight = axis.emUnit * 1.62;
+    var arrowHeight = axis.emUnit * 1.5;
     var axisHeight = axisMonths * monthHeight;
-    var startY = axis.emUnit * 2;
+    var startY = arrowHeight;
     var lineWidth = axis.emUnit * .05;
         
     var points = [(cx - arrowWidth) + "," + startY,
@@ -125,19 +185,34 @@ Axis.prototype.draw = function() {
   
   function drawSeparators(axis, svg, svgCenterX, axisMonths) {
     var em = axis.emUnit;
-    var length = .14 * em;
-    var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", svgCenterX - length);
-    line.setAttribute("x2", svgCenterX + length);
-    line.style.stroke = "rgb(0, 191, 255)"
+    var r = .14 * em;
+    var line = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    line.setAttribute("r", r);
+    line.setAttribute("cx", svgCenterX);
+    line.style.fill = "rgb(0, 191, 255)"
     
     for  (var i = axisMonths - 1; i > 1; i--) {
       var l = line.cloneNode(true);
-      l.setAttribute("y1", i * monthHeight);
-      l.setAttribute("y2", i * monthHeight);
+      l.setAttribute("cy", i * monthHeight);
       svg.appendChild(l);
     }
-  }
+  }  
+  /*  ------------  Separators as lines  -------  */
+//  function drawSeparators(axis, svg, svgCenterX, axisMonths) {
+//    var em = axis.emUnit;
+//    var length = .14 * em;
+//    var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+//    line.setAttribute("x1", svgCenterX - length);
+//    line.setAttribute("x2", svgCenterX + length);
+//    line.style.stroke = "rgb(0, 191, 255)"
+//    
+//    for  (var i = axisMonths - 1; i > 1; i--) {
+//      var l = line.cloneNode(true);
+//      l.setAttribute("y1", i * monthHeight);
+//      l.setAttribute("y2", i * monthHeight);
+//      svg.appendChild(l);
+//    }
+//  }
   
   function drawLogs(axis, svg, svgCenterX) {
     axis.logs.forEach(function(log) {
