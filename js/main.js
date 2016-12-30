@@ -7,12 +7,12 @@ function start() {
   new MenuEventHandlers().main(); // register menu event handlers
   var axis = new Axis();
   
-  axis.addLog("1: 11/14 to 5/15", new Date(2014, 10), new Date(2015, 4));
-  axis.addLog("2: 12/14 to 1/15", new Date(2014, 11), new Date(2015, 0));
-  axis.addLog("3: 1/15 to 2/15", new Date(2015, 0), new Date(2015, 1));
-  axis.addLog("4: 3/15 to 6/15", new Date(2015, 2), new Date(2015, 5));
-  axis.addLog("5: 10/15 to 12/15", new Date(2015, 9), new Date(2015, 11));
-  axis.addLog("6: 3/16 to current", new Date(2016, 2));
-  axis.addLog("7: 12/16 to current", new Date(2016, 11));
+  axis.addLog("first android: 8/15 to 10/15", new Date(2015,7), new Date(2015, 9));
+  axis.addLog("MQL: 10/15 to 2/16", new Date(2015, 9), new Date(2016, 1));
+  axis.addLog("JAVA: 1/16 to 6/16", new Date(2016, 0), new Date(2016, 5));
+  axis.addLog("ANDROID: 6/16 to 9/16", new Date(2016, 5), new Date(2016, 8));
+  axis.addLog("RE-JAVA: 8/16 to 12/16", new Date(2016, 7), new Date(2016, 11));
+  axis.addLog("HTML CSS: 9/16 to 11/16", new Date(2016, 8), new Date(2016, 10));
+  axis.addLog("EJS: 9/16 to 12/16", new Date(2016, 8), new Date(2016, 11));
   axis.draw();
 }
