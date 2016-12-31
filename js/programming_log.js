@@ -1,8 +1,10 @@
 // TODO: make ".main-content".width responsive to the width of the svg;
 // TODO: Log.draw() - fix -ongoing logs - semiCircle-drawing
-// TODO: Log.draw() - show contents of logs on "mouseover"
+// TODO: add Github icon.
+// TODO: Change text in intro.
+// TODO: Change interests - to 'What am I passionate about?'
 
-"use strict";
+'use strict';
 
   var em = Math.floor($(".main-content").outerWidth(false) / 33);
 
@@ -14,14 +16,15 @@
 function hideRightSubMenu() {
   var $rightSubMenu = $(".sub-menu-right");
   if ($rightSubMenu.css("right") == "0px") {
-    var rightIn = em * (-16.25);
+    var rightIn = em * (-20);
     $rightSubMenu.animate({ right: rightIn }, 200);
   }
 }
 
-function Log(text, startDate, endDate) {
+function Log(title, text, startDate, endDate) {
   this.startDate = startDate;
   this.endDate = endDate ? endDate : null;
+  this.title = title;
   this.text = text;
 }
 
@@ -65,7 +68,7 @@ Log.prototype.draw = function(axis, svg, svgCenterX, axisMonths) {
     var month = date.getMonth();
     var diffYear = year - axis.startYear;
     var monthOnLog;
-    if (diffYear == 0)
+    if (diffYear === 0)
       monthOnLog = month - axis.startMonth;
     else if (diffYear == 1)
       monthOnLog = 12 - axis.startMonth + month;
@@ -81,17 +84,18 @@ Log.prototype.draw = function(axis, svg, svgCenterX, axisMonths) {
     
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", points);
-    path.setAttribute("fill", "rgba(230, 230, 230, 0.2)");
+    path.setAttribute("fill", "rgba(240, 255, 255, .3)");
     path.setAttribute("stroke", "rgb(0, 191, 255)");
     path.addEventListener("mouseover", function(e) {
-      path.setAttribute("fill", "rgba(180, 180, 180, .4)");
+      path.setAttribute("fill", "rgba(0, 191, 255, .4)");
       var $right =  $(".sub-menu-right");
       if ($right.css("right") < "0px") 
         $right.animate( { right: "0" }, 200);
-      $right.find("p").html(log.text);
+      $right.find("p").html(log.title);
+      $right.find(".sub-menu-content").html(log.text);
     });
     path.addEventListener("mouseout", function(e) {
-      path.setAttribute("fill", "rgba(230, 230, 230, 0.2)");
+      path.setAttribute("fill", "rgba(240, 255, 255, .3)");
     });
     return path;
   }
@@ -108,7 +112,7 @@ function Axis() {
   em = this.emUnit;
 }
 
-Axis.prototype.addLog = function(text, startDate, endDate) {
+Axis.prototype.addLog = function(title, text, startDate, endDate) {
   // Update the starting point of the log.
   if (startDate.getFullYear() < this.startYear) {
     this.startYear = startDate.getFullYear();
@@ -117,13 +121,13 @@ Axis.prototype.addLog = function(text, startDate, endDate) {
              && startDate.getMonth() < this.startMonth) {
     this.startMonth = startDate.getMonth();
   }
-  this.logs.push(new Log(text, startDate, endDate));
+  this.logs.push(new Log(title, text, startDate, endDate));
 }
 
 Axis.prototype.draw = function() {
   var monthHeight = 2 * this.emUnit;
   var axisMonths = calcAxisMonths(this);
-  var svgHeight = (axisMonths + 2) * monthHeight;
+  var svgHeight = (axisMonths + 1) * monthHeight;
   console.log("months in the log:", axisMonths, "svgHeight = ", svgHeight);
   var svg = document.querySelector(".pro-log svg");
   svg.setAttribute("height", svgHeight);

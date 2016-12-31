@@ -89,15 +89,15 @@ function MenuEventHandlers() {
   * @listItem jQuery object containing menu item title.
   **/
   function getListItemText($listItem) {
-      var menuItemsText = [ "This is 'about me' webpage representing my skills in Web Development",
-                            "If you got here by accident, go <a href='http://google.com'>here</a>",
-                            "If you feel like you want to contact, feel free to get in touch. email:      <strong>frameture@gmail.com</strong>", 
-                            "Structure defined in HTML, style given with CSS, digital clock powered by JavaScript and menu tab written in jQuery / JavaScript" ];
+      var menuItemsText = [ "This is 'about me' webpage, which represents my skills in Web Development",
+                            "If you got here by accident, go <a href='http://google.com'>here</a>.",
+                            "If you feel like you want to get in touch.<br><strong>frameture@gmail.com</strong>", 
+                            "Technology used in developing this page: <br> <strong>JavaScript with jQuery</strong> <br> HTML & CSS" ];
     switch ($listItem.html()) {
       case "About":   return menuItemsText[0];
       case "Help":    return menuItemsText[1];
       case "Contact": return menuItemsText[2];
-      case "Content": return menuItemsText[3];
+      case "Technology": return menuItemsText[3];
       default:
         console.log("Error in event-handling getListItemText()");
         return "An error occured. Sorry.";

@@ -9,7 +9,7 @@ body {
     .main-content {
         position: relative;
         width: 33em;
-        height: 45em;
+        height: 42em;
         margin: 2.5em auto;
         background-color: #fff;
         border: 0.2em solid rgb(0, 191, 255);   
@@ -23,21 +23,29 @@ body {
                 border: 0.2em solid rgb(0, 191, 255);
                 border-radius: 50%;
             }
-            #facebook {
-                width: 10%;
-                transition: width .5s;
-                -webkit-transition: width .5s;
+            #facebook, #github {
+                position: absolute;
+                width: 2em;
+                transition: width .2s;
+                -webkit-transition: width .2s;
+              border-radius: 50%;
 
             }
-            #facebook:hover {
-                width: 11%;
+            #facebook:hover, #github:hover {
+                width: 2.2em;
             }
+#github {
+  left: 14em;
+}
+#facebook {
+  left: 17em;
+}
         .main-content-body {
             position: absolute; /* so the content doesn't stretch as  */
-            top: 25em;        /* the user hovers over the #facebook */
+            top: 21em;        /* the user hovers over the #facebook */
         }
             .full-info {
-                line-height: 1.5em;
+                line-height: 2em;
                 margin: 0 3em;
             }
             .main-content-body ul {
@@ -49,13 +57,13 @@ body {
                 .main-content-body li {
                     line-height: 1.6em;
                 }
-                    .skill a {
+                    a {
                         text-decoration: none;
-                            color:lightgray;
-                            transition: color 1s;
-                            -webkit-transition: color 1s;
+                            color: darkgrey;
+                            transition: color .5s;
+                            -webkit-transition: color .5s;
                     }
-                    .skill a:hover {
+                    a:hover {
                         color:black;
                     }
             .interests {
@@ -67,8 +75,7 @@ body {
                 line-height: 2em;
             }
                 svg {
-                  width: 15em;
-                  margin: auto;
+                  width: 11em;
                 } 
 
 /* CLOCK styling */

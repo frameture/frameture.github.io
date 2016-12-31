@@ -28,9 +28,8 @@
         line-height: 1em;
     }
         .menu-main li {
-            margin: 2em 1em;
+            margin: 2em .2em;
             padding: 0 .2em;
-            max-width: 3em;
         }
         .menu-main li:hover { 
             font-weight: 900; 
@@ -40,23 +39,28 @@
     height: 18.25em;
     width: 12em;
     position: fixed;
-    left: -14em;
+    left: -13em;
     border: 0.2em solid rgb(0, 191, 255);
     background: white;
 }
 .sub-menu-right {
-    height: 18.25em;
+    height: 22.25em;
     z-index: 1;
-    width: 12em;
+    width: 19em;
     position: fixed;
     border: 0.2em solid rgb(0, 191, 255);
-    right: -16.25em;
+    right: -20em;
     position: fixed;
     top: 3em;
     border: 0.2em solid rgb(0, 191, 255); 
     border-right: none;
     background: white;
 }
+/*
+   .sub-menu-right .sub-menu-content {
+     overflow: scroll;
+    }
+*/
                
     .sub-menu-close { 
         margin-top: 2em; 
@@ -71,6 +75,6 @@
         background: rgb(0, 191, 255);
     }
     .sub-menu-content {
-        margin: .1em .4em;
+        margin: 1em .4em;
         line-height: 2em;
     }
