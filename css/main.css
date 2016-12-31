@@ -9,7 +9,7 @@ body {
     .main-content {
         position: relative;
         width: 33em;
-        height: 95em;
+        height: 45em;
         margin: 2.5em auto;
         background-color: #fff;
         border: 0.2em solid rgb(0, 191, 255);   
@@ -67,10 +67,9 @@ body {
                 line-height: 2em;
             }
                 svg {
-                  width: 20em;
+                  width: 15em;
                   margin: auto;
-                }
-                
+                } 
 
 /* CLOCK styling */
 #time-date {

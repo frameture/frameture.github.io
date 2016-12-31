@@ -1,6 +1,5 @@
 /* MENU styling */
-.menu-main,
-.sub-menu {
+.menu-main {
   z-index: 2;
   background: white;
 }
@@ -18,7 +17,6 @@
     position: fixed;
     top: 3em;
     left: 0em;
-    margin 1em;
     padding-top: 2em;
     border: 0.2em solid rgb(0, 191, 255); 
     border-left: none;
@@ -37,14 +35,29 @@
         .menu-main li:hover { 
             font-weight: 900; 
         }
-.sub-menu {
+.sub-menu-left {
     z-index: 1;
     height: 18.25em;
     width: 12em;
     position: fixed;
     left: -14em;
     border: 0.2em solid rgb(0, 191, 255);
+    background: white;
 }
+.sub-menu-right {
+    height: 18.25em;
+    z-index: 1;
+    width: 12em;
+    position: fixed;
+    border: 0.2em solid rgb(0, 191, 255);
+    right: -16.25em;
+    position: fixed;
+    top: 3em;
+    border: 0.2em solid rgb(0, 191, 255); 
+    border-right: none;
+    background: white;
+}
+               
     .sub-menu-close { 
         margin-top: 2em; 
     }

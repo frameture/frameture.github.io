@@ -1,8 +1,23 @@
-// TODO: make ".main-content".width responsive to the height of the svg;
+// TODO: make ".main-content".width responsive to the width of the svg;
 // TODO: Log.draw() - fix -ongoing logs - semiCircle-drawing
 // TODO: Log.draw() - show contents of logs on "mouseover"
 
 "use strict";
+
+  var em = Math.floor($(".main-content").outerWidth(false) / 33);
+
+  function registerBodyListeners() {
+    $("body").click(hideRightSubMenu);
+    addEventListener("scroll", hideRightSubMenu);
+  }
+
+function hideRightSubMenu() {
+  var $rightSubMenu = $(".sub-menu-right");
+  if ($rightSubMenu.css("right") == "0px") {
+    var rightIn = em * (-16.25);
+    $rightSubMenu.animate({ right: rightIn }, 200);
+  }
+}
 
 function Log(text, startDate, endDate) {
   this.startDate = startDate;
@@ -60,37 +75,20 @@ Log.prototype.draw = function(axis, svg, svgCenterX, axisMonths) {
   }
   
   function newSemiCircle(log, cx, y1, y2) {
-    if (y2 == null)
-      y2 = monthHeight;
-
-    // TODO: not finished logs - fix closing drawing;
-    var notFinishedXOffset = 0;
-        var arc = y2 - y1;
-    if (axis.logs.indexOf(log) % 2 == 0) {
-      arc = (-arc);
-    }
-    console.log(cx, arc);
-    var points = ["M " + cx + " " + y1,
-          "Q " + (cx - arc) + " " + (y2 + ((y1 - y2) / 2)),
-          (cx + notFinishedXOffset) + " " + y2];
-    if (y2 == null) { 
-      y2 = monthHeight;
-      notFinishedXOffset = (-monthHeight); 
-      points = ["M " + cx + " " + y1,
-                  "Q " + (cx - arc) + " " + (y2 + ((y1 - y2) / 2)),
-                "z " + (cx + notFinishedXOffset) + " " + y2,];
-                 // "l " + (cx + notFinishedXOffset) + " " + y2];
-    }
+    var arc = (axis.logs.indexOf(log) % 2) == 0 ? y1 - y2 : y2 - y1;
+    var points = "M" + cx + " " + y1 + " C " + cx + " " + y1 + ", " + 
+        (cx - arc) + " " + (y2 + ((y1 - y2) / 2)) + ", " + cx + " " + y2;
     
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    
-    console.log(points);
     path.setAttribute("d", points);
     path.setAttribute("fill", "rgba(230, 230, 230, 0.2)");
     path.setAttribute("stroke", "rgb(0, 191, 255)");
     path.addEventListener("mouseover", function(e) {
-      console.log(path);
-      path.setAttribute("fill", "rgba(100, 100, 100, .4)");
+      path.setAttribute("fill", "rgba(180, 180, 180, .4)");
+      var $right =  $(".sub-menu-right");
+      if ($right.css("right") < "0px") 
+        $right.animate( { right: "0" }, 200);
+      $right.find("p").html(log.text);
     });
     path.addEventListener("mouseout", function(e) {
       path.setAttribute("fill", "rgba(230, 230, 230, 0.2)");
@@ -107,6 +105,7 @@ function Axis() {
   this.startYear = this.endYear;
   this.startMonth = this.endMonth;
   this.emUnit = Math.floor($(".main-content").outerWidth(false) / 33);
+  em = this.emUnit;
 }
 
 Axis.prototype.addLog = function(text, startDate, endDate) {
@@ -132,6 +131,13 @@ Axis.prototype.draw = function() {
   svg.appendChild(newSVGAxis(this, svgCenterX, axisMonths));
   drawLogs(this, svg, svgCenterX, axisMonths);
   drawSeparators(this, svg, svgCenterX, axisMonths);
+  registerBodyListeners();
+  svg.addEventListener("click", function(e) { 
+    e.stopPropagation();
+  });
+  var $page = $(".main-content");
+  // Incerase the height of the page in regards to the height of the log.
+  $page.css("height", svgHeight + parseInt($page.css("height"), 10));
   
 /* No more drawing. */
 /* ---------- Nested functions ---------- */
@@ -173,13 +179,13 @@ Axis.prototype.draw = function() {
     arrow.style.fill = "azure";
     arrow.style.stroke = "rgb(0, 191, 255)";
 
-    arrow.addEventListener("mouseover", function(e) {
-      arrow.style.fill = "rgb(0, 191, 255)";
-      console.log(e.clientY, e.pageY);
-    });
-      arrow.addEventListener("mouseout", function(e) {
-      arrow.style.fill = "azure";
-    });
+//    arrow.addEventListener("mouseover", function(e) {
+//      arrow.style.fill = "rgb(0, 191, 255)";
+//      console.log(e.clientY, e.pageY);
+//    });
+//      arrow.addEventListener("mouseout", function(e) {
+//      arrow.style.fill = "azure";
+//    });
     return arrow;
   }
   
@@ -197,22 +203,6 @@ Axis.prototype.draw = function() {
       svg.appendChild(l);
     }
   }  
-  /*  ------------  Separators as lines  -------  */
-//  function drawSeparators(axis, svg, svgCenterX, axisMonths) {
-//    var em = axis.emUnit;
-//    var length = .14 * em;
-//    var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-//    line.setAttribute("x1", svgCenterX - length);
-//    line.setAttribute("x2", svgCenterX + length);
-//    line.style.stroke = "rgb(0, 191, 255)"
-//    
-//    for  (var i = axisMonths - 1; i > 1; i--) {
-//      var l = line.cloneNode(true);
-//      l.setAttribute("y1", i * monthHeight);
-//      l.setAttribute("y2", i * monthHeight);
-//      svg.appendChild(l);
-//    }
-//  }
   
   function drawLogs(axis, svg, svgCenterX) {
     axis.logs.forEach(function(log) {

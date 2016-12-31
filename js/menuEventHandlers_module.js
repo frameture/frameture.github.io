@@ -49,15 +49,15 @@ function MenuEventHandlers() {
   function registerMenuItemsListeners() {
     $(".menu-main").find("li").click(function(e) {
       e.stopPropagation();
-      var $subMenuP = $(".sub-menu").find("p");
-      var $subMenuContent = $(".sub-menu").find(".sub-menu-content"); // menu item content
-      if ( $(".sub-menu").css("left") > "0px" ) {   
+      var $subMenuP = $(".sub-menu-left").find("p");
+      var $subMenuContent = $(".sub-menu-left").find(".sub-menu-content"); // menu item content
+      if ( $(".sub-menu-left").css("left") > "0px" ) {   
         if ( $(this).html() === $subMenuP.html() ) // if menu item clicked again - hide
           hideSubMenu();
         setProperContent(this, $subMenuP, $subMenuContent); // set the text
       } else {
         setProperContent(this, $subMenuP, $subMenuContent);
-        $(".sub-menu").animate( { left: "6.9em" }, 200); // show sub-menu
+        $(".sub-menu-left").animate( { left: "6.9em" }, 200); // show sub-menu
       }     
     });
   }
@@ -80,8 +80,8 @@ function MenuEventHandlers() {
   }
   
   function hideSubMenu() {
-    if ( $(".sub-menu").css("left") > "0px") // if sub-menu is visible
-      $(".sub-menu").animate( { left: "-14em" }, 200);
+    if ( $(".sub-menu-left").css("left") > "0px") // if sub-menu is visible
+      $(".sub-menu-left").animate( { left: "-14em" }, 200);
   }
 
   /**
