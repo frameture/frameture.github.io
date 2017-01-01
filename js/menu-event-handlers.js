@@ -90,7 +90,7 @@ function MenuEventHandlers() {
   **/
   function getListItemText($listItem) {
       var menuItemsText = [ "This is 'about me' webpage, which represents my skills in Web Development",
-                            "If you got here by accident, go <a href='http://google.com'>here</a>.",
+                            "If you got here by accident, go <a href='http://google.com' target='_blank'>here</a>.",
                             "If you feel like you want to get in touch.<br><strong>frameture@gmail.com</strong>", 
                             "Technology used in developing this page: <br> <strong>JavaScript with jQuery</strong> <br> HTML & CSS" ];
     switch ($listItem.html()) {

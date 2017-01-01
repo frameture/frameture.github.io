@@ -1,8 +1,9 @@
 // TODO: make ".main-content".width responsive to the width of the svg;
 // TODO: Log.draw() - fix -ongoing logs - semiCircle-drawing
-// TODO: add Github icon.
 // TODO: Change text in intro.
 // TODO: Change interests - to 'What am I passionate about?'
+// TODO: Size of right submenu - depends on text size. ? - var for size
+// ? certificates
 
 'use strict';
 
@@ -37,7 +38,6 @@ Log.prototype.draw = function(axis, svg, svgCenterX, axisMonths) {
   
   if (this.endDate == null) { // This log has no closing point.
     var semi = newSemiCircle(this, svgCenterX, startY);
-    console.log(semi);
     svg.appendChild(semi);
     return;
   }
@@ -57,9 +57,6 @@ Log.prototype.draw = function(axis, svg, svgCenterX, axisMonths) {
     point.setAttribute("fill", "azure");
     point.setAttribute("stroke", "rgb(0, 191, 255)");
     point.setAttribute("cx", svgCenterX);
-    point.addEventListener("mouseover", function(e) {
-      console.log(log.text);
-    });
     return point;
   }
   
@@ -89,15 +86,38 @@ Log.prototype.draw = function(axis, svg, svgCenterX, axisMonths) {
     path.addEventListener("mouseover", function(e) {
       path.setAttribute("fill", "rgba(0, 191, 255, .4)");
       var $right =  $(".sub-menu-right");
+      $right.attr("height", getMenuHeight(log.title));
       if ($right.css("right") < "0px") 
         $right.animate( { right: "0" }, 200);
-      $right.find("p").html(log.title);
+      $right.find("#title").html(log.title);
+      $right.find("#date").html(getDate(log));
       $right.find(".sub-menu-content").html(log.text);
     });
     path.addEventListener("mouseout", function(e) {
       path.setAttribute("fill", "rgba(240, 255, 255, .3)");
     });
     return path;
+  }
+  
+  function getDate(log) {
+    var MONTHS = ["January", "February", "March", "April", "May", "June", 
+                  "July", "August", "September", "October", "November", 
+                  "December"];
+    return MONTHS[log.startDate.getMonth()] + " " + log.startDate.getFullYear() 
+    + " - " + MONTHS[log.endDate.getMonth()] + " " + log.endDate.getFullYear();
+  }
+  
+  function getMenuHeight(title) {
+    var HEIGHTS = { 
+      "First Jump Into Programming": 21, 
+      "Automated Trading": 22.5, 
+      "Java": 24, 
+      "Android": 26, 
+      "Repetition - Way For Sustainable Knowledge": 22.5, 
+      "HTML & CSS": 16.5, 
+      "JavaScript": 28.5 
+    };
+    return HEIGHTS[title] * em;
   }
   
 }
@@ -127,7 +147,7 @@ Axis.prototype.addLog = function(title, text, startDate, endDate) {
 Axis.prototype.draw = function() {
   var monthHeight = 2 * this.emUnit;
   var axisMonths = calcAxisMonths(this);
-  var svgHeight = (axisMonths + 1) * monthHeight;
+  var svgHeight = (axisMonths + .5) * monthHeight;
   console.log("months in the log:", axisMonths, "svgHeight = ", svgHeight);
   var svg = document.querySelector(".pro-log svg");
   svg.setAttribute("height", svgHeight);
@@ -142,6 +162,9 @@ Axis.prototype.draw = function() {
   var $page = $(".main-content");
   // Incerase the height of the page in regards to the height of the log.
   $page.css("height", svgHeight + parseInt($page.css("height"), 10));
+  
+  $(".sub-menu-right").click(function(e) { e.stopPropagation() });
+  $(".pro-log .sub-menu-close").click(hideRightSubMenu);
   
 /* No more drawing. */
 /* ---------- Nested functions ---------- */
@@ -164,7 +187,7 @@ Axis.prototype.draw = function() {
     console.log("cx", cx);
 
     var arrowWidth = axis.emUnit * .15;
-    var arrowHeight = axis.emUnit * 1.5;
+    var arrowHeight = axis.emUnit * 1.1;
     var axisHeight = axisMonths * monthHeight;
     var startY = arrowHeight;
     var lineWidth = axis.emUnit * .05;
@@ -182,14 +205,6 @@ Axis.prototype.draw = function() {
     arrow.setAttribute("points", points.toString());
     arrow.style.fill = "azure";
     arrow.style.stroke = "rgb(0, 191, 255)";
-
-//    arrow.addEventListener("mouseover", function(e) {
-//      arrow.style.fill = "rgb(0, 191, 255)";
-//      console.log(e.clientY, e.pageY);
-//    });
-//      arrow.addEventListener("mouseout", function(e) {
-//      arrow.style.fill = "azure";
-//    });
     return arrow;
   }
   
@@ -201,7 +216,7 @@ Axis.prototype.draw = function() {
     line.setAttribute("cx", svgCenterX);
     line.style.fill = "rgb(0, 191, 255)"
     
-    for  (var i = axisMonths - 1; i > 1; i--) {
+    for  (var i = axisMonths; i > 0; i--) {
       var l = line.cloneNode(true);
       l.setAttribute("cy", i * monthHeight);
       svg.appendChild(l);

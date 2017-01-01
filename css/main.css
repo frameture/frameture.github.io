@@ -34,12 +34,12 @@ body {
             #facebook:hover, #github:hover {
                 width: 2.2em;
             }
-#github {
-  left: 14em;
-}
-#facebook {
-  left: 17em;
-}
+            #github {
+              left: 14em;
+            }
+            #facebook {
+              left: 17em;
+            }
         .main-content-body {
             position: absolute; /* so the content doesn't stretch as  */
             top: 21em;        /* the user hovers over the #facebook */
@@ -94,9 +94,3 @@ body {
         position: relative;
         top: -.35em;
     }
-
-/*
-.log-point {
-  stroke-width: .05em;
-  r: .2em;  
-}*/
