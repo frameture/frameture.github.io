@@ -10,18 +10,18 @@
     <link rel="stylesheet" type="text/css" href="css/menu.css" />
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- module for installing menu event handlers -->
-    <script type="text/javascript" src="js/menu-event-handlers.js"></script>
     <!-- module for digital clock -->
     <script type="text/javascript" src="js/clock.js"></script>
-        <!-- module for programming log -->
+    <!-- module for installing menu event handlers -->
+    <script type="text/javascript" src="js/menu-event-handlers.js"></script>
+    <!-- module for programming log -->
     <script type="text/javascript" src="js/programming-log.js"></script>
     <!-- Main script. Executes the modules. -->
     <script type="text/javascript" src="js/main.js"></script>
   </head>
 
   <body onload="start()"> <!-- runs the js/main.js script -->
-    <div class="menu"> <!-- menu section -->
+    <div class="menu">
       <div class="menu-open">MENU</div>
       <div class="menu-main">
         <img class="menu-close" src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png" alt="close"/>
@@ -52,26 +52,23 @@
       </div>
       <div class="main-content-body">
         <p class="full-info">
-          Entrepreneurial spirit that gathers knowledge and skills necessary to launch new ventures, IT ventures. Enthusiastic and positive person that possesses exceptional interpersonal skills. Self-driven and subordinate to self-discipline.
+          Entrepreneurial spirit that gathers knowledge and skills necessary to launch new ventures, IT ventures. Enthusiastic and positive person with interpersonal skills. Self-driven and subordinate to self-discipline.
         </p>
-        
         <h4>Programming Log</h4>
         <div class="pro-log">
-          <svg></svg>
+          <svg></svg> <!--Scripts will draw programming log here.-->
           <div class="sub-menu-right">
             <img class="sub-menu-close" src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png" alt="close"/>
-            <p id="title"></p> <!-- used in event handling; will contain text for given menu item -->
+            <p id="title"></p> <!-- Will contain text for given menu item. -->
             <p id="date"></p>
             <div class="sub-menu-separator"></div>
             <div class="sub-menu-content"></div>
           </div>
         </div>
-        
         <div class="interests">
           <h4>Interests</h4>
           <p>Programming / Commodity &amp; Currency Trading / Fitness / Books</p>
         </div>
-
       </div> <!-- end: main-content-body -->
     </div> <!-- end: main-content -->
   </body>

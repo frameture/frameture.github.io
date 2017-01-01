@@ -45,8 +45,9 @@ body {
             top: 21em;        /* the user hovers over the #facebook */
         }
             .full-info {
-                line-height: 2em;
                 margin: 0 3em;
+                line-height: 2em;
+                text-align: justify;
             }
             .main-content-body ul {
                 position: relative;
